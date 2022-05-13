@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/drawable/admin_slider_bg.xml" value="0.219" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/drawable/bg_splashscreen.xml" value="0.2215" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/drawable/card_view_bg.xml" value="0.219" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/drawable/ic_baseline_hourglass_top_24.xml" value="0.2355" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/drawable/ic_hourglass.xml" value="0.2215" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/drawable/round_tv.xml" value="0.219" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/font/font.xml" value="0.38666666666666666" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/activity_splash.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/expired.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/fragment_admin.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/fragment_create_edit.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/fragment_details.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/fragment_discount.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/fragment_home.xml" value="0.4" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/row_admin.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/row_discount.xml" value="0.72" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/row_expired.xml" value="0.3625" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/row_upcoming.xml" value="0.33189655172413796" />
+        <entry key="..\:/Users/savol/Desktop/Github/ConcertTickets/app/src/main/res/layout/test_layout.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

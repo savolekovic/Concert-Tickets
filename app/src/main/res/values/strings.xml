@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Concert Tickets</string>
+    <string name="concert_tickets">Concert Tickets</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="for_you">For you</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="expired">Expired</string>
+    <string name="non_discount">Non - Discount</string>
+    <string name="discount">Discount</string>
+    <string name="no_tickets">No non-discounted tickets left</string>
+    <string name="no_tickets_discount">No discounted tickets left</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+</resources>

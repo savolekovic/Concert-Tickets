@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="toolbar_divider">#E3E3E3</color>
+
+    <color name="black_75">#BF121212</color>
+    <color name="black_35">#59121212</color>
+    <color name="white_50">#A6FFFFFF</color>
+    <color name="white_75">#BFFFFFFF</color>
+
+    <color name="transparent_25">#40121212</color>
+    <color name="transparent_35">#59121212</color>
+    <color name="app_color">#364597</color>
+
+</resources>

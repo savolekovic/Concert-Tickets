@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:padding="8dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/upcoming_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/upcoming_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="25dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/upcoming_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/upcoming_month"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="8dp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:text="may" />
+
+                            <TextView
+                                android:id="@+id/upcoming_day"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textAllCaps="true"
+                                android:textColor="@color/black"
+                                android:textSize="52sp"
+                                android:textStyle="bold"
+                                tools:text="18" />
+
+                            <TextView
+                                android:id="@+id/upcoming_year"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:padding="8dp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/black"
+                                android:textSize="17sp"
+                                tools:text="2022" />
+
+                        </LinearLayout>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/upcoming_img_card"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="16dp"
+                            app:cardCornerRadius="25dp"
+                            app:layout_constraintBottom_toBottomOf="@id/upcoming_date"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/upcoming_date"
+                            app:layout_constraintTop_toTopOf="@id/upcoming_date">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/upcoming_img"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:ignore="ContentDescription"
+                                    tools:src="@drawable/hanszimmer" />
+
+                                <View
+                                    android:id="@+id/upcoming_fade"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:background="#59121212"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/upcoming_performer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/round_tv"
+                                    android:paddingHorizontal="16dp"
+                                    android:paddingVertical="8dp"
+                                    android:textColor="@color/black_75"
+                                    android:textSize="13sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="Hans Zimmer" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/upcoming_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:background="@drawable/round_tv"
+                                    android:padding="12dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    tools:text="153e" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/upcoming_time"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="13sp"
+                                    app:layout_constraintBottom_toTopOf="@id/upcoming_location"
+                                    app:layout_constraintEnd_toStartOf="@id/upcoming_price"
+                                    app:layout_constraintStart_toStartOf="@id/upcoming_performer"
+                                    tools:text="11:30AM" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/upcoming_location"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="13sp"
+                                    app:layout_constraintBottom_toTopOf="@id/upcoming_tickets"
+                                    app:layout_constraintEnd_toStartOf="@id/upcoming_price"
+                                    app:layout_constraintStart_toStartOf="@id/upcoming_performer"
+                                    tools:text="Berlin" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/upcoming_tickets"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white_75"
+                                    android:textSize="13sp"
+                                    app:layout_constraintBottom_toBottomOf="@id/upcoming_price"
+                                    app:layout_constraintEnd_toStartOf="@id/upcoming_price"
+                                    app:layout_constraintStart_toStartOf="@id/upcoming_performer"
+                                    tools:ignore="SmallSp"
+                                    tools:text="20 tickets more" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/admin_card"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/upcoming_card">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/admin_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:padding="8dp"
+                        android:text="@string/edit"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/admin_divider"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/admin_delete"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:padding="8dp"
+                        android:text="@string/delete"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/admin_divider"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/admin_divider"
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_marginVertical="4dp"
+                        android:background="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/admin_edit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/admin_edit" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
