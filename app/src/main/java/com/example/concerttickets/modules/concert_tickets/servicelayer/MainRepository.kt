@@ -19,15 +19,13 @@ class MainRepository
     private val ticketsRetrofit: TicketsRetrofit,
 ) {
 
-    suspend fun resetDatabase() = flow {
+    suspend fun resetDatabase() {
         ticketsDao.deleteAllTickets()
-
-        emit(Resource.Loading(null))
         try {
             ticketsDao.insertAllTickets(ticketsRetrofit.getConcertTickets())
-            ticketsDao.getConcertTickets().map { emit(Resource.Success(it)) }
+            ticketsDao.getConcertTickets().map { Resource.Success(it) }
         } catch (throwable: Throwable) {
-            ticketsDao.getConcertTickets().map { emit(Resource.Error(throwable, it)) }
+            ticketsDao.getConcertTickets().map { Resource.Error(throwable, it) }
         }
     }
 
@@ -50,10 +48,9 @@ class MainRepository
         emitAll(flow)
     }
 
-    fun getDiscountedTickets(ticketType: String) = ticketsDao.getDiscountedTickets(ticketType)
+    fun getDiscountedTickets(ticketType: String) = ticketsDao.getTicketsByType(ticketType)
 
     suspend fun deleteConcertTicket(concertTicket: ConcertTicket) =
         ticketsDao.deleteConcertTicket(concertTicket)
-
 
 }

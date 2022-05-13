@@ -41,12 +41,29 @@ class UpcomingAdapter :
                             R.color.app_color
                         )
                     )
+                    if (concertTicket.payload.discount != null) {
+                        upcomingDiscount.visibility = View.VISIBLE
+                        val discountText = "-${concertTicket.payload.discount}%"
+                        upcomingDiscount.text = discountText
+
+                        val discountedPrice =
+                            concertTicket.payload.price * ((100 - concertTicket.payload.discount) / 100.0f)
+                        val ticketsDiscountedText = "${String.format("%.1f", discountedPrice)}€"
+                        upcomingPrice.text = ticketsDiscountedText
+                    } else {
+                        val priceText = "${concertTicket.payload.price} €"
+                        upcomingPrice.text = priceText
+                    }
+
                     adminDelete.setOnClickListener {
                         onDeleteClickListener?.let { it(concertTicket) }
                     }
                     adminEdit.setOnClickListener {
                         onEditClickListener?.let { it(concertTicket) }
                     }
+                } else {
+                    val priceText = "${concertTicket.payload.price} €"
+                    upcomingPrice.text = priceText
                 }
 
                 root.setOnClickListener {
@@ -76,9 +93,6 @@ class UpcomingAdapter :
 
                 val quantityText = "${concertTicket.payload.quantity} tickets more"
                 upcomingTickets.text = quantityText
-
-                val priceText = "${concertTicket.payload.price} €"
-                upcomingPrice.text = priceText
             }
         }
 
@@ -99,7 +113,13 @@ class UpcomingAdapter :
     }
 
     override fun onBindViewHolder(holder: UpcomingViewHolder, position: Int) {
-        holder.bind(currentList[position], isAdmin, onItemClickListener, onDeleteClickListener, onEditClickListener)
+        holder.bind(
+            currentList[position],
+            isAdmin,
+            onItemClickListener,
+            onDeleteClickListener,
+            onEditClickListener
+        )
     }
 
     override fun getItemCount(): Int = currentList.size

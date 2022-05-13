@@ -11,7 +11,7 @@ interface TicketsDao {
     fun getConcertTickets(): Flow<List<ConcertTicket>>
 
     @Query("SELECT * FROM concert_ticket WHERE type == :ticketType")
-    fun getDiscountedTickets(ticketType: String): Flow<List<ConcertTicket>>
+    fun getTicketsByType(ticketType: String): Flow<List<ConcertTicket>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllTickets(tickets: List<ConcertTicket>)

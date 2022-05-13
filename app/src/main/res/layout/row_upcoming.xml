@@ -134,6 +134,21 @@
                                     tools:text="Hans Zimmer" />
 
                                 <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/upcoming_discount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/round_tv"
+                                    android:paddingHorizontal="4dp"
+                                    android:paddingVertical="8dp"
+                                    android:textColor="@color/black_75"
+                                    android:textSize="13sp"
+                                    android:visibility="gone"
+                                    app:layout_constraintEnd_toEndOf="@id/upcoming_price"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:text="-40%" />
+
+                                <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/upcoming_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -191,9 +206,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/admin_card"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/upcoming_card">

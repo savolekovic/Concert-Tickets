@@ -3,7 +3,6 @@ package com.example.concerttickets.modules.concert_tickets.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.persistableBundleOf
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,6 +24,7 @@ class DiscountAdapter :
                 Glide.with(root.context)
                     .load(IMAGE_URL + concertTicket.payload.photo)
                     .into(discountImage)
+
                 val discountText = "-${concertTicket.payload.discount}%"
                 discountPercent.text = discountText
 
@@ -38,7 +38,7 @@ class DiscountAdapter :
                 val discountedPrice =
                     concertTicket.payload.price * ((100 - concertTicket.payload.discount!!) / 100.0f)
                 val ticketsDiscountedText =
-                    "Only ${concertTicket.payload.quantity} tickets for $discountedPrice €"
+                    "Only ${concertTicket.payload.quantity} tickets for ${String.format("%.1f", discountedPrice)} €"
                 discountTicketsCountPrice.text = ticketsDiscountedText
 
                 discountPerformer.text = concertTicket.payload.name
