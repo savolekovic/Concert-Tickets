@@ -53,4 +53,7 @@ class MainRepository
     suspend fun deleteConcertTicket(concertTicket: ConcertTicket) =
         ticketsDao.deleteConcertTicket(concertTicket)
 
+    fun getDetails(ticketId: Int) = ticketsDao.getDetails(ticketId)
+
+
 }

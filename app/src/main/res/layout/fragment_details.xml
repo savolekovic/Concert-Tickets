@@ -1,21 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".modules.concert_tickets.components.home.HomeFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="DETAILS FRAGMENT" />
+            android:layout_height="wrap_content"
+            android:clipToPadding="false">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/details_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/hanszimmer" />
+
+            <View
+                android:id="@+id/details_overlay"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                app:layout_constraintBottom_toBottomOf="@id/details_img" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@id/details_overlay"
+                app:layout_goneMarginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/details_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:text="Hans Zimmer" />
+
+                    <TextView
+                        android:id="@+id/details_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="13sp"
+                        tools:text="@string/dummy_text" />
+
+                    <TextView
+                        android:id="@+id/details_place_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/place"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/details_place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        tools:text="Berlin" />
+
+                    <TextView
+                        android:id="@+id/details_time_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/time"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/details_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        tools:text="11:30AM" />
+
+                    <TextView
+                        android:id="@+id/details_quantity_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/quantity"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/details_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        tools:text="30" />
+
+                    <TextView
+                        android:id="@+id/details_discount_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/discount_"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/details_discount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        tools:text="40%" />
+
+                    <TextView
+                        android:id="@+id/details_price_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/final_price"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/details_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        tools:text="152$" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 </layout>

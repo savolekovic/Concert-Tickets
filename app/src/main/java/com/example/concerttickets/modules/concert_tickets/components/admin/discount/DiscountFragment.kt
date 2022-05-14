@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.concerttickets.R
 import com.example.concerttickets.databinding.FragmentDiscountBinding
 import com.example.concerttickets.modules.concert_tickets.adapters.UpcomingAdapter
+import com.example.concerttickets.modules.concert_tickets.components.admin.AdminFragmentDirections
 import com.example.concerttickets.utils.DISCOUNT
 import com.example.concerttickets.utils.EVENT
 import com.example.concerttickets.utils.IS_DISCOUNTED
@@ -62,7 +63,8 @@ class DiscountFragment : Fragment() {
         //On ITEM click listener
         adapter.setOnItemClickListener {
             //Add Safe args here
-            binding.root.findNavController().navigate(R.id.action_adminFragment_to_detailsFragment)
+            binding.root.findNavController()
+                .navigate(AdminFragmentDirections.actionAdminFragmentToDetailsFragment(it.ticket_id!!))
         }
         //On DELETE click listener
         adapter.setOnDeleteClickListener {

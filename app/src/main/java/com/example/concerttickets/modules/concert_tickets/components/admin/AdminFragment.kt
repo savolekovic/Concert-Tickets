@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import com.example.concerttickets.R
 import com.example.concerttickets.databinding.FragmentAdminBinding
 import com.example.concerttickets.modules.concert_tickets.components.admin.discount.DiscountFragment
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class AdminFragment : Fragment() {
@@ -82,15 +84,16 @@ class AdminFragment : Fragment() {
     }
 
     private fun setOnClickDiscount() {
+        val typeface = ResourcesCompat.getFont(binding.root.context, R.font.montserrat_regular)
         binding.adminNonDiscount.setOnClickListener {
             binding.adminViewpager.currentItem = 0
-            binding.adminNonDiscount.setTypeface(null, Typeface.BOLD)
-            binding.adminDiscount.setTypeface(null, Typeface.NORMAL)
+            binding.adminNonDiscount.setTypeface(typeface, Typeface.BOLD)
+            binding.adminDiscount.setTypeface(typeface, Typeface.NORMAL)
         }
         binding.adminDiscount.setOnClickListener {
             binding.adminViewpager.currentItem = 1
-            binding.adminNonDiscount.setTypeface(null, Typeface.NORMAL)
-            binding.adminDiscount.setTypeface(null, Typeface.BOLD)
+            binding.adminNonDiscount.setTypeface(typeface, Typeface.NORMAL)
+            binding.adminDiscount.setTypeface(typeface, Typeface.BOLD)
         }
     }
 

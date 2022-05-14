@@ -64,14 +64,16 @@ class HomeFragment : Fragment() {
         //Discount
         discountAdapter.setOnItemClickListener {
             //Add Safe args here
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
+            binding.root.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.ticket_id!!))
         }
         binding.discountRecycler.adapter = discountAdapter
 
         //Upcoming
         upcomingAdapter.setOnItemClickListener {
             //Add Safe args here
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
+            binding.root.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.ticket_id!!))
         }
         binding.upcomingRecycler.layoutManager =
             GridLayoutManager(binding.root.context, 2, GridLayoutManager.HORIZONTAL, false)
@@ -81,7 +83,8 @@ class HomeFragment : Fragment() {
         //Upcoming
         expiredAdapter.setOnItemClickListener {
             //Add Safe args here
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
+            binding.root.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.ticket_id!!))
         }
         binding.expiredRecycler.adapter = expiredAdapter
 

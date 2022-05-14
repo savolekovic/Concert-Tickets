@@ -38,5 +38,10 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.concerttickets.modules.concert_tickets.components.details.DetailsFragment"
         android:label="Details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="ticket_id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>
