@@ -6,7 +6,7 @@ import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
 
 @Database(
     entities = [ConcertTicket::class],
-    version = 1
+    version = 3
 )
 abstract class TicketsDatabase : RoomDatabase() {
 

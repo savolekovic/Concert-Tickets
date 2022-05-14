@@ -1,6 +1,7 @@
 package com.example.concerttickets.modules.concert_tickets.components.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,8 +88,6 @@ class HomeFragment : Fragment() {
                 .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it.ticket_id!!))
         }
         binding.expiredRecycler.adapter = expiredAdapter
-
-
         binding.homeAdminFab.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_adminFragment)
         )
@@ -115,16 +114,30 @@ class HomeFragment : Fragment() {
 
         tickets.forEach {
             if (it.type == DISCOUNT) {
-                if (it.payload.date.isValidDate())
+                if (it.payload.date.isValidDate() == 1 || it.payload.date.isValidDate() == 0)
                     discountList.add(it)
                 else
                     expiredList.add(it)
-            } else if (it.type == EVENT && it.payload.date.isValidDate())
+            } else if (it.type == EVENT && it.payload.date.isValidDate() == 1 || it.payload.date.isValidDate() == 0)
                 upcomingList.add(it)
         }
-        discountAdapter.submitList(discountList)
-        upcomingAdapter.submitList(upcomingList, false)
-        expiredAdapter.submitList(expiredList)
-    }
+        if (discountList.isEmpty()) {
+            binding.discountTv.visibility = View.GONE
+            binding.discountRecycler.visibility = View.GONE
+        } else discountAdapter.submitList(discountList)
 
+        if (upcomingList.isEmpty()) {
+            binding.upcomingTv.visibility = View.GONE
+            binding.upcomingRecycler.visibility = View.GONE
+        } else upcomingAdapter.submitList(upcomingList, false)
+
+        if (expiredList.isEmpty()) {
+            binding.expiredTv.visibility = View.GONE
+            binding.expiredRecycler.visibility = View.GONE
+        } else expiredAdapter.submitList(expiredList)
+
+        Log.d("test123", "discountList $discountList")
+        Log.d("test123", "upcomingList $upcomingList")
+        Log.d("test123", "expiredList $expiredList")
+    }
 }

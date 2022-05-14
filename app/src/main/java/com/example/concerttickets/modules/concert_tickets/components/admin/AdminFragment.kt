@@ -27,7 +27,6 @@ class AdminFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentAdminBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -71,8 +70,7 @@ class AdminFragment : Fragment() {
 
     private fun setAddOnClick() {
         binding.adminAddFab.setOnClickListener {
-            //Create new ticket
-            it.findNavController().navigate(R.id.action_adminFragment_to_createEditFragment)
+            it.findNavController().navigate(AdminFragmentDirections.actionAdminFragmentToCreateEditFragment(isEdit = false))
         }
     }
 

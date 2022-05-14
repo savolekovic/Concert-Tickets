@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.example.concerttickets.databinding.RowDiscountBinding
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
 import com.example.concerttickets.utils.IMAGE_URL
+import java.text.NumberFormat
+import java.util.*
 
 class DiscountAdapter :
     ListAdapter<ConcertTicket, DiscountAdapter.DiscountViewHolder>(TicketDiffCallback()) {
@@ -38,7 +40,9 @@ class DiscountAdapter :
                 val discountedPrice =
                     concertTicket.payload.price * ((100 - concertTicket.payload.discount!!) / 100.0f)
                 val ticketsDiscountedText =
-                    "Only ${concertTicket.payload.quantity} tickets for ${String.format("%.1f", discountedPrice)} €"
+                    "Only ${concertTicket.payload.quantity} tickets for ${NumberFormat.getCurrencyInstance(
+                        Locale.GERMANY
+                    ).format(discountedPrice)}"
                 discountTicketsCountPrice.text = ticketsDiscountedText
 
                 discountPerformer.text = concertTicket.payload.name

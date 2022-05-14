@@ -14,3 +14,5 @@ const val DISCOUNT = "DISCOUNT"
 const val EVENT = "EVENT"
 
 const val IS_DISCOUNTED = "IS_DISCOUNTED"
+
+const val TIME_VALUE = "11:30"

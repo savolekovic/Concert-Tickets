@@ -55,5 +55,6 @@ class MainRepository
 
     fun getDetails(ticketId: Int) = ticketsDao.getDetails(ticketId)
 
+    fun getAllTickets() = ticketsDao.getConcertTickets()
 
 }

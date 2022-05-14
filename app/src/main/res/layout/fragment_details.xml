@@ -85,21 +85,21 @@
                         tools:text="Berlin" />
 
                     <TextView
-                        android:id="@+id/details_time_header"
+                        android:id="@+id/details_date_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="@string/time"
+                        android:text="@string/date"
                         android:textSize="13sp" />
 
                     <TextView
-                        android:id="@+id/details_time"
+                        android:id="@+id/details_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        tools:text="11:30AM" />
+                        tools:text="05.05.2022" />
 
                     <TextView
                         android:id="@+id/details_quantity_header"

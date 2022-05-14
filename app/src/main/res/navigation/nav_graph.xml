@@ -33,7 +33,16 @@
         android:id="@+id/createEditFragment"
         android:name="com.example.concerttickets.modules.concert_tickets.components.create_edit.CreateEditFragment"
         android:label="Create"
-        tools:layout="@layout/fragment_create_edit" />
+        tools:layout="@layout/fragment_create_edit" >
+        <argument
+            android:name="isEdit"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="ticket_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.concerttickets.modules.concert_tickets.components.details.DetailsFragment"

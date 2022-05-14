@@ -24,29 +24,22 @@ fun String.toMonth(): String {
     }
 }
 
-fun String.isValidDate(): Boolean {
-    val sdf = SimpleDateFormat("MM.dd.yyyy", Locale.ENGLISH)
-
-    val currentDate = sdf.format(Date())
-
-    try {
-        val firstDate: Date? = sdf.parse(this)
-        val secondDate: Date? = sdf.parse(currentDate)
-
-        val cmp = firstDate?.compareTo(secondDate)
-
-        return if (cmp != null) {
+fun String.isValidDate(): Int {
+    val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)
+    val currentDate = dateFormat.format(Date())
+    return try {
+        val firstDate: Date? = dateFormat.parse(this)
+        val secondDate: Date? = dateFormat.parse(currentDate)
+        val compare = firstDate?.compareTo(secondDate)
+        if (compare != null) {
             when {
-                cmp > 0 ->
-                    true
-                cmp < 0 ->
-                    false
-                else ->
-                    true
+                compare > 0 -> 1
+                compare < 0 -> -1
+                else -> 2
             }
-        } else false
+        } else 0
     } catch (e: ParseException) {
         e.printStackTrace()
-        return false
+        0
     }
 }

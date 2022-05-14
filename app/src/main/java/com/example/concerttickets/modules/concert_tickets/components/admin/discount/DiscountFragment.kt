@@ -62,7 +62,6 @@ class DiscountFragment : Fragment() {
 
         //On ITEM click listener
         adapter.setOnItemClickListener {
-            //Add Safe args here
             binding.root.findNavController()
                 .navigate(AdminFragmentDirections.actionAdminFragmentToDetailsFragment(it.ticket_id!!))
         }
@@ -78,14 +77,17 @@ class DiscountFragment : Fragment() {
         }
         //On EDIT click listener
         adapter.setOnEditClickListener {
-            binding.root.findNavController()
-                .navigate(R.id.action_adminFragment_to_createEditFragment)
+            binding.root.findNavController().navigate(
+                AdminFragmentDirections.actionAdminFragmentToCreateEditFragment(
+                    isEdit = true,
+                    ticketId = it.ticket_id!!
+                )
+            )
         }
         binding.adminRecycler.layoutManager = LinearLayoutManager(context)
         binding.adminRecycler.adapter = adapter
 
         subscribeObservers()
-
     }
 
     private fun subscribeObservers() {

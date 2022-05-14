@@ -17,12 +17,13 @@
             android:clipToPadding="false">
 
             <ImageView
-                android:id="@+id/details_img"
+                android:id="@+id/create_edit_img"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription"
+                tools:layout_editor_absoluteX="0dp"
                 tools:src="@drawable/hanszimmer" />
 
             <LinearLayout
@@ -31,10 +32,10 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/details_img">
+                app:layout_constraintTop_toBottomOf="@id/create_edit_img">
 
                 <TextView
-                    android:id="@+id/details_name_header"
+                    android:id="@+id/create_edit_name_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -48,14 +49,14 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/details_name"
+                        android:id="@+id/create_edit_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/details_description_header"
+                    android:id="@+id/create_edit_description_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -66,17 +67,20 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textMultiLine"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="200">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/details_description"
+                        android:id="@+id/create_edit_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lines="1" />
+                        android:maxLength="200" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/details_place_header"
+                    android:id="@+id/create_edit_place_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -90,19 +94,19 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/details_place"
+                        android:id="@+id/create_edit_place"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/details_time_header"
+                    android:id="@+id/create_edit_date_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="@string/time"
+                    android:text="@string/date"
                     android:textSize="13sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -111,14 +115,16 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/details_time"
+                        android:id="@+id/create_edit_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
                         android:lines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/details_price_header"
+                    android:id="@+id/create_edit_price_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -132,14 +138,16 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/details_price"
+                        android:id="@+id/create_edit_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lines="1" />
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="6" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/details_quantity_header"
+                    android:id="@+id/create_edit_quantity_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -153,10 +161,12 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/details_quantity"
+                        android:id="@+id/create_edit_quantity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lines="1" />
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="6" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>

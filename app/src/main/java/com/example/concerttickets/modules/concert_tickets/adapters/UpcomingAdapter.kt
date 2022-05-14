@@ -11,7 +11,10 @@ import com.example.concerttickets.R
 import com.example.concerttickets.databinding.RowUpcomingBinding
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
 import com.example.concerttickets.utils.IMAGE_URL
+import com.example.concerttickets.utils.TIME_VALUE
 import com.example.concerttickets.utils.toMonth
+import java.text.NumberFormat
+import java.util.*
 
 class UpcomingAdapter :
     ListAdapter<ConcertTicket, UpcomingAdapter.UpcomingViewHolder>(TicketDiffCallback()) {
@@ -62,8 +65,8 @@ class UpcomingAdapter :
                         onEditClickListener?.let { it(concertTicket) }
                     }
                 } else {
-                    val priceText = "${concertTicket.payload.price} €"
-                    upcomingPrice.text = priceText
+                    upcomingPrice.text = NumberFormat.getCurrencyInstance(Locale.GERMANY)
+                        .format(concertTicket.payload.price)
                 }
 
                 root.setOnClickListener {
@@ -82,9 +85,8 @@ class UpcomingAdapter :
 
                 upcomingPerformer.text = concertTicket.payload.name
 
-                //There is no time in APi, so I just put 11:30AM for every item
-                val timeText = "11:30AM"
-                upcomingTime.text = timeText
+                //There is no time in APi, so I have put 11:30AM for every item
+                upcomingTime.text = TIME_VALUE
 
                 if (concertTicket.payload.place == null) {
                     upcomingLocation.visibility = View.GONE

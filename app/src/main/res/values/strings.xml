@@ -18,11 +18,13 @@
     <string name="description">Description:</string>
     <string name="name">Name:</string>
     <string name="place">Place:</string>
-    <string name="time">Time:</string>
+    <string name="date">Date:</string>
     <string name="quantity">Quantity:</string>
     <string name="discount_">Discount:</string>
     <string name="final_price">Final price:</string>
     <string name="price">Price:</string>
+
+    <string name="pick_date">Click to set a date</string>
 
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 </resources>
