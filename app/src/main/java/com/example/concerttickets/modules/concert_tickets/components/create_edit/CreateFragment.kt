@@ -127,12 +127,12 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 binding.createEditDiscountValue.error = getStringOrNull(it)
             }
         }
-//        //DiscountQuantity
-//        lifecycleScope.launchWhenCreated {
-//            viewModel.discountQuantityErrorFlow.collectLatest {
-//                binding.createEditDiscountQuantity.error = getStringOrNull(it)
-//            }
-//        }
+        //DiscountQuantity
+        lifecycleScope.launchWhenCreated {
+            viewModel.discountQuantityErrorFlow.collectLatest {
+                binding.createEditDiscountQuantity.error = getStringOrNull(it)
+            }
+        }
     }
 
     private fun initDiscountToggle() {
@@ -146,7 +146,6 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
-        binding.createEditDate.hint = ""
         binding.createEditDate.setText(Helper.formatDate(year = year, month = month, day = day))
     }
 }
