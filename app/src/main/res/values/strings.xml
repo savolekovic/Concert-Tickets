@@ -11,6 +11,7 @@
     <string name="no_tickets">No non-discounted tickets left</string>
     <string name="no_tickets_discount">No discounted tickets left</string>
     <string name="edit">Edit</string>
+    <string name="create">Create</string>
     <string name="delete">Delete</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
@@ -23,8 +24,19 @@
     <string name="discount_">Discount:</string>
     <string name="final_price">Final price:</string>
     <string name="price">Price:</string>
+    <string name="discount_value">Discount value:</string>
+    <string name="discount_quantity">Discount quantity:</string>
 
     <string name="pick_date">Click to set a date</string>
+
+    <string name="alert_empty_name">Name field is empty</string>
+    <string name="alert_empty_place">Place field is empty</string>
+    <string name="alert_empty_date">Date field is empty</string>
+    <string name="alert_empty_price">Price field is empty</string>
+    <string name="alert_empty_quantity">Quantity field is empty</string>
+    <string name="alert_empty_discount_value">Discount value field is empty</string>
+    <string name="alert_discount_value">Discount value must be less than 100</string>
+    <string name="alert_empty_discount_quantity">Discount quantity field is empty</string>
 
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 </resources>

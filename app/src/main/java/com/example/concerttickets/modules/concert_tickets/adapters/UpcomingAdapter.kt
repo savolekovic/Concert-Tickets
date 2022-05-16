@@ -50,7 +50,7 @@ class UpcomingAdapter :
                         upcomingDiscount.text = discountText
 
                         val discountedPrice =
-                            concertTicket.payload.price * ((100 - concertTicket.payload.discount) / 100.0f)
+                            concertTicket.payload.price * ((100 - concertTicket.payload.discount!!) / 100.0f)
                         val ticketsDiscountedText = "${String.format("%.1f", discountedPrice)}€"
                         upcomingPrice.text = ticketsDiscountedText
                     } else {
@@ -86,7 +86,7 @@ class UpcomingAdapter :
                 upcomingPerformer.text = concertTicket.payload.name
 
                 //There is no time in APi, so I have put 11:30AM for every item
-                upcomingTime.text = TIME_VALUE
+                //upcomingTime.text = TIME_VALUE
 
                 if (concertTicket.payload.place == null) {
                     upcomingLocation.visibility = View.GONE

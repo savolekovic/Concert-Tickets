@@ -1,5 +1,6 @@
 package com.example.concerttickets.utils
 
+import androidx.fragment.app.Fragment
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,3 +44,5 @@ fun String.isValidDate(): Int {
         0
     }
 }
+
+fun Fragment.getStringOrNull(id: Int?) = if (id != null) getString(id) else null

@@ -2,6 +2,7 @@ package com.example.concerttickets.modules.concert_tickets.servicelayer
 
 
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
+import com.example.concerttickets.services.network.NetworkManager
 import com.example.concerttickets.services.network.retrofit.TicketsRetrofit
 import com.example.concerttickets.services.persistence.room.TicketsDao
 import com.example.concerttickets.utils.Resource
@@ -17,8 +18,8 @@ class MainRepository
 @Inject constructor(
     private val ticketsDao: TicketsDao,
     private val ticketsRetrofit: TicketsRetrofit,
+    private val networkManager: NetworkManager
 ) {
-
     suspend fun resetDatabase() {
         ticketsDao.deleteAllTickets()
         try {
@@ -55,6 +56,8 @@ class MainRepository
 
     fun getDetails(ticketId: Int) = ticketsDao.getDetails(ticketId)
 
-    fun getAllTickets() = ticketsDao.getConcertTickets()
+    suspend fun upsert(concertTicket: ConcertTicket): Long {
+        return ticketsDao.upsert(concertTicket)
+    }
 
 }

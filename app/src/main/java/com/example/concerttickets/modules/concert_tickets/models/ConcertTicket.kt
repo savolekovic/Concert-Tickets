@@ -8,8 +8,8 @@ import com.squareup.moshi.Json
 @Entity(tableName = "concert_ticket")
 data class ConcertTicket(
     @PrimaryKey(autoGenerate = true)
-    var ticket_id: Int? = null,
+    val ticket_id: Int? = null,
 
     @Embedded val payload: Payload,
-    val type: String
+    var type: String
 )

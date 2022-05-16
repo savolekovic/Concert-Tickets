@@ -162,16 +162,16 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     tools:text="153e" />
 
-                                <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/upcoming_time"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/white"
-                                    android:textSize="13sp"
-                                    app:layout_constraintBottom_toTopOf="@id/upcoming_location"
-                                    app:layout_constraintEnd_toStartOf="@id/upcoming_price"
-                                    app:layout_constraintStart_toStartOf="@id/upcoming_performer"
-                                    tools:text="11:30AM" />
+<!--                                <com.google.android.material.textview.MaterialTextView-->
+<!--                                    android:id="@+id/upcoming_time"-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:textColor="@color/white"-->
+<!--                                    android:textSize="13sp"-->
+<!--                                    app:layout_constraintBottom_toTopOf="@id/upcoming_location"-->
+<!--                                    app:layout_constraintEnd_toStartOf="@id/upcoming_price"-->
+<!--                                    app:layout_constraintStart_toStartOf="@id/upcoming_performer"-->
+<!--                                    tools:text="11:30AM" />-->
 
                                 <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/upcoming_location"

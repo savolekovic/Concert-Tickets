@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import javax.inject.Named
 
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -51,14 +50,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerViews()
-
-        //Get data
         subscribeObserver()
 
         binding.homeAdminFab.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_adminFragment)
         )
-
     }
 
     private fun initRecyclerViews() {

@@ -75,7 +75,7 @@ class DetailsFragment : Fragment() {
                 detailsDiscount.text = discount
 
                 //Change final price if there is a discount
-                finalPrice = ticket.payload.price * ((100 - ticket.payload.discount) / 100.0f)
+                finalPrice = ticket.payload.price * ((100 - ticket.payload.discount!!) / 100.0f)
             } else {
                 detailsDiscount.visibility = View.GONE
                 detailsDiscountHeader.visibility = View.GONE
