@@ -37,7 +37,6 @@ class ExpiredAdapter :
                 } else {
                     expiredLocation.visibility = View.VISIBLE
                     expiredLocation.text = concertTicket.payload.place
-                    Log.d("test123", "sto jev obobobobobo:${concertTicket.payload.place}")
                 }
             }
         }

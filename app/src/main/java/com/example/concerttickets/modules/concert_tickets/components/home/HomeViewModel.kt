@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel
-@Inject constructor(private val mainRepository: MainRepository) : ViewModel() {
+@Inject constructor(mainRepository: MainRepository) : ViewModel() {
 
     val tickets = mainRepository.getConcertTickets().asLiveData()
 

@@ -31,7 +31,7 @@ class CreateEditViewModel
     val priceErrorFlow = MutableSharedFlow<Int?>()
     val quantityErrorFlow = MutableSharedFlow<Int?>()
     val discountValueErrorFlow = MutableSharedFlow<Int?>()
-    //val discountQuantityErrorFlow = MutableSharedFlow<Int?>()
+    val discountQuantityErrorFlow = MutableSharedFlow<Int?>()
 
     fun upsert(
         name: String,
@@ -41,6 +41,7 @@ class CreateEditViewModel
         price: String,
         quantity: String,
         discountValue: String,
+        discountQuantity: String,
         isDiscountChecked: Boolean,
         thisTicket: ConcertTicket
     ) {
@@ -52,25 +53,80 @@ class CreateEditViewModel
                     price,
                     quantity,
                     discountValue,
+                    discountQuantity,
                     isDiscountChecked
                 )
             ) {
-                thisTicket.payload.name = name
-                thisTicket.payload.description = description
-                thisTicket.payload.place = place
-                thisTicket.payload.date = date
-                thisTicket.payload.price = price.toInt()
-                thisTicket.payload.quantity = quantity.toInt()
+                //ID payload-a je uvijek 99, jer mi je baza bila malo zbunjujuca.
+                //Nisam znao od pocetka da li je potrebno da kreiram poseban Entity za Payload, ili je bilo dovoljno samo Concert ticket.
+                //I previse kasno sam to uocio, pa nisam stigao da pitam.
+
+                val payload = Payload(
+                    name = name,
+                    description = description,
+                    place = place,
+                    date = date,
+                    price = price.toInt(),
+                    quantity = 0,
+                    photo = TICKET_IMAGE,
+                    id = 99
+                )
 
                 if (isDiscountChecked) {
-                    if (thisTicket.type == EVENT)
-                        thisTicket.type = DISCOUNT
-                    thisTicket.payload.discount = discountValue.toInt()
+                    if (thisTicket.type == EVENT) {
+                        if (quantity.toInt() > discountQuantity.toInt()) {
+                            //Update EVENT tickets if the total quantity of tickets is bigger than the Discount quantity
+                            payload.quantity = quantity.toInt() - discountQuantity.toInt()
+                            thisTicket.payload = payload
+                            _eventFlow.emit(mainRepository.upsert(thisTicket))
+                            //Create DISCOUNT tickets
+                            payload.quantity = discountQuantity.toInt()
+                            payload.discount = discountValue.toInt()
+                            _eventFlow.emit(
+                                mainRepository.upsert(
+                                    ConcertTicket(
+                                        type = DISCOUNT,
+                                        payload = payload
+                                    )
+                                )
+                            )
+                        } else {
+                            //Update tickets by setting the type to DISCOUNT
+                            thisTicket.type = DISCOUNT
+                            payload.quantity = discountQuantity.toInt()
+                            payload.discount = discountValue.toInt()
+                            thisTicket.payload = payload
+                            _eventFlow.emit(mainRepository.upsert(thisTicket))
+                        }
+                    } else {
+                        //Update DISCOUNT tickets
+                        payload.quantity = discountQuantity.toInt()
+                        payload.discount = discountValue.toInt()
+                        thisTicket.payload = payload
+                        _eventFlow.emit(mainRepository.upsert(thisTicket))
+                        if (quantity.toInt() > discountQuantity.toInt()) {
+                            //Create EVENT tickets
+                            payload.quantity = quantity.toInt() - discountQuantity.toInt()
+                            payload.discount = null
+                            _eventFlow.emit(
+                                mainRepository.upsert(
+                                    ConcertTicket(
+                                        type = EVENT,
+                                        payload = payload
+                                    )
+                                )
+                            )
+                        }
+                    }
                 } else {
                     if (thisTicket.type == DISCOUNT)
                         thisTicket.type = EVENT
+                    payload.quantity = quantity.toInt()
+                    payload.discount = null
+                    thisTicket.payload = payload
+                    //Update EVENT tickets
+                    _eventFlow.emit(mainRepository.upsert(thisTicket))
                 }
-                _eventFlow.emit(mainRepository.upsert(thisTicket))
             }
         }
     }
@@ -82,6 +138,7 @@ class CreateEditViewModel
         price: String,
         quantity: String,
         discountValue: String,
+        discountQuantity: String,
         isDiscountChecked: Boolean
     ): Boolean {
         var isValid = true
@@ -126,6 +183,10 @@ class CreateEditViewModel
                     isValid = false
                     R.string.alert_empty_price
                 }
+                price.toInt() <= 0 -> {
+                    isValid = false
+                    R.string.alert_price_negative
+                }
                 else -> null
             }
         )
@@ -136,6 +197,10 @@ class CreateEditViewModel
                 quantity.isBlank() -> {
                     isValid = false
                     R.string.alert_empty_quantity
+                }
+                quantity.toInt() <= 0 -> {
+                    isValid = false
+                    R.string.alert_quantity_negative
                 }
                 else -> null
             }
@@ -148,6 +213,10 @@ class CreateEditViewModel
                         isValid = false
                         R.string.alert_empty_discount_value
                     }
+                    discountValue.toInt() <= 0 -> {
+                        isValid = false
+                        R.string.alert_discount_value_negative
+                    }
                     discountValue.toInt() > 99 -> {
                         isValid = false
                         R.string.alert_discount_value
@@ -156,16 +225,24 @@ class CreateEditViewModel
                 }
             )
 
-//            //DiscountQuantity
-//            discountQuantityErrorFlow.emit(
-//                when {
-//                    discountQuantity.isBlank() -> {
-//                        isValid = false
-//                        R.string.alert_empty_discount_quantity
-//                    }
-//                    else -> null
-//                }
-//            )
+            //DiscountQuantity
+            discountQuantityErrorFlow.emit(
+                when {
+                    discountQuantity.isBlank() -> {
+                        isValid = false
+                        R.string.alert_empty_discount_quantity
+                    }
+                    discountQuantity.toInt() <= 0 -> {
+                        isValid = false
+                        R.string.alert_discount_quantity_negative
+                    }
+                    discountQuantity.toInt() > quantity.toInt() -> {
+                        isValid = false
+                        R.string.alert_discount_quantity
+                    }
+                    else -> null
+                }
+            )
         }
 
         return isValid
@@ -179,6 +256,7 @@ class CreateEditViewModel
         price: String,
         quantity: String,
         discountValue: String,
+        discountQuantity: String,
         isDiscountChecked: Boolean
     ) = viewModelScope.launch {
         if (validateForm(
@@ -188,6 +266,7 @@ class CreateEditViewModel
                 price,
                 quantity,
                 discountValue,
+                discountQuantity,
                 isDiscountChecked
             )
         ) {
@@ -202,7 +281,7 @@ class CreateEditViewModel
                                 description = description,
                                 place = place,
                                 price = price.toInt(),
-                                quantity = quantity.toInt(),
+                                quantity = discountQuantity.toInt(),
                                 photo = TICKET_IMAGE,
                                 discount = discountValue.toInt(),
                                 id = 99
@@ -210,6 +289,25 @@ class CreateEditViewModel
                         )
                     )
                 )
+                if (quantity.toInt() > discountQuantity.toInt()) {
+                    _eventFlow.emit(
+                        mainRepository.upsert(
+                            ConcertTicket(
+                                type = EVENT,
+                                payload = Payload(
+                                    name = name,
+                                    date = date,
+                                    description = description,
+                                    place = place,
+                                    price = price.toInt(),
+                                    quantity = quantity.toInt() - discountQuantity.toInt(),
+                                    photo = TICKET_IMAGE,
+                                    id = 99
+                                )
+                            )
+                        )
+                    )
+                }
             } else {
                 _eventFlow.emit(
                     mainRepository.upsert(

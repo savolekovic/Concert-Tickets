@@ -1,7 +1,6 @@
 package com.example.concerttickets.modules.concert_tickets.components.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,15 +90,19 @@ class HomeFragment : Fragment() {
 
     private fun subscribeObserver() {
         viewModel.tickets.observe(viewLifecycleOwner) {
-            //We got all tickets from the API
-            //Now we have to extract 3 separate lists (Discounts, Events and Expired)
-            if (it is Resource.Success && !it.data.isNullOrEmpty()) {
-                extractLists(it.data)
-                binding.homeContainer.isVisible = true
-            }
             binding.homeLoading.isVisible = it is Resource.Loading && it.data.isNullOrEmpty()
             binding.homeError.isVisible = it is Resource.Error && it.data.isNullOrEmpty()
             binding.homeError.text = it.error?.localizedMessage
+            //We got all tickets from the API
+            //Now we have to extract 3 separate lists (Discounts, Events and Expired)
+            if (it is Resource.Success && it.data != null) {
+                if (it.data.isEmpty()) {
+                    binding.homeError.text = getString(R.string.no_tickets_alert)
+                    binding.homeError.isVisible = true
+                }
+                extractLists(it.data)
+                binding.homeContainer.visibility = View.VISIBLE
+            }
         }
     }
 

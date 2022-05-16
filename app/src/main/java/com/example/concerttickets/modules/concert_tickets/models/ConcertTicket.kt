@@ -10,6 +10,6 @@ data class ConcertTicket(
     @PrimaryKey(autoGenerate = true)
     val ticket_id: Int? = null,
 
-    @Embedded val payload: Payload,
+    @Embedded var payload: Payload,
     var type: String
 )

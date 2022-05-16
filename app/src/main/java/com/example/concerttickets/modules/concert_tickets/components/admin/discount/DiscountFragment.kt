@@ -90,7 +90,7 @@ class DiscountFragment : Fragment() {
     }
 
     private fun subscribeObservers() {
-        viewModel.getTicketsByType(
+        viewModel.getDiscountedTickets(
             if (isDiscounted) DISCOUNT
             else EVENT
         ).observe(viewLifecycleOwner) {

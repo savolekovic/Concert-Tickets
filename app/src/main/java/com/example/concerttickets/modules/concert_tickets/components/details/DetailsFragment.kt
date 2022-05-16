@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.concerttickets.databinding.FragmentDetailsBinding
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
 import com.example.concerttickets.utils.IMAGE_URL
-import com.example.concerttickets.utils.TIME_VALUE
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.util.*

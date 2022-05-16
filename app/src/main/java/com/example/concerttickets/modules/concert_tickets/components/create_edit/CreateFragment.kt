@@ -59,6 +59,7 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 binding.createEditPrice.text.toString().trim(),
                 binding.createEditQuantity.text.toString().trim(),
                 binding.createEditDiscountValue.text.toString().trim(),
+                binding.createEditDiscountQuantity.text.toString().trim(),
                 binding.createEditDiscountToggle.isChecked
             )
         }
@@ -82,7 +83,11 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             viewModel.eventFlow.collectLatest {
                 if (it > 0) {
                     binding.root.findNavController().navigateUp()
-                    Toast.makeText(binding.root.context, "New Concert tickets created.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        binding.root.context,
+                        "New Concert tickets created.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

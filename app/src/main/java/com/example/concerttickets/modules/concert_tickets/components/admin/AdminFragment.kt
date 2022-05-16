@@ -57,8 +57,6 @@ class AdminFragment : Fragment() {
                     .setMessage("Are you sure you want to reset Database?")
                     .setPositiveButton(getString(R.string.yes)) { _, _ ->
                         viewModel.resetDatabase()
-                        Toast.makeText(binding.root.context, "Database Refreshed", Toast.LENGTH_SHORT)
-                            .show()
                     }
                     .setNegativeButton(getString(R.string.cancel), null)
                     .show()

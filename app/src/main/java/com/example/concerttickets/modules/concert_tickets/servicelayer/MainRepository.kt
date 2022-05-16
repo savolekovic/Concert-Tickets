@@ -1,9 +1,11 @@
 package com.example.concerttickets.modules.concert_tickets.servicelayer
 
 
+import android.util.Log
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
 import com.example.concerttickets.services.network.NetworkManager
 import com.example.concerttickets.services.network.retrofit.TicketsRetrofit
+import com.example.concerttickets.services.persistence.SharedPreferences
 import com.example.concerttickets.services.persistence.room.TicketsDao
 import com.example.concerttickets.utils.Resource
 import kotlinx.coroutines.flow.emitAll
@@ -18,9 +20,12 @@ class MainRepository
 @Inject constructor(
     private val ticketsDao: TicketsDao,
     private val ticketsRetrofit: TicketsRetrofit,
-    private val networkManager: NetworkManager
+    private val networkManager: NetworkManager,
+    private val sharedPrefs: SharedPreferences
 ) {
     suspend fun resetDatabase() {
+        if (!networkManager.isConnectedToInternet())
+            return
         ticketsDao.deleteAllTickets()
         try {
             ticketsDao.insertAllTickets(ticketsRetrofit.getConcertTickets())
@@ -35,10 +40,12 @@ class MainRepository
         val query = ticketsDao.getConcertTickets().first()
         val shouldFetch = query.isEmpty()
 
-        val flow = if (shouldFetch) {
+        val flow = if (shouldFetch && sharedPrefs.hasNotLoadedFromNetwork) {
+
             emit(Resource.Loading(query))
             try {
                 ticketsDao.insertAllTickets(ticketsRetrofit.getConcertTickets())
+                sharedPrefs.hasNotLoadedFromNetwork = false
                 ticketsDao.getConcertTickets().map { Resource.Success(it) }
             } catch (throwable: Throwable) {
                 ticketsDao.getConcertTickets().map { Resource.Error(throwable, it) }

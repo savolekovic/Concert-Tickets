@@ -62,6 +62,7 @@ class EditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 binding.createEditPrice.text.toString().trim(),
                 binding.createEditQuantity.text.toString().trim(),
                 binding.createEditDiscountValue.text.toString().trim(),
+                binding.createEditDiscountQuantity.text.toString().trim(),
                 binding.createEditDiscountToggle.isChecked,
                 thisTicket
             )
@@ -73,7 +74,11 @@ class EditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             viewModel.eventFlow.collectLatest {
                 if (it > 0) {
                     binding.root.findNavController().navigateUp()
-                    Toast.makeText(binding.root.context, "Concert ticket edited.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        binding.root.context,
+                        "Concert ticket edited.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -113,12 +118,12 @@ class EditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 binding.createEditDiscountValue.error = getStringOrNull(it)
             }
         }
-//        //DiscountQuantity
-//        lifecycleScope.launchWhenCreated {
-//            viewModel.discountQuantityErrorFlow.collectLatest {
-//                binding.createEditDiscountQuantity.error = getStringOrNull(it)
-//            }
-//        }
+        //DiscountQuantity
+        lifecycleScope.launchWhenCreated {
+            viewModel.discountQuantityErrorFlow.collectLatest {
+                binding.createEditDiscountQuantity.error = getStringOrNull(it)
+            }
+        }
     }
 
     private fun updateUI() {
@@ -160,7 +165,7 @@ class EditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             //Discount
             if (thisTicket.payload.discount != null) {
                 binding.createEditDiscountToggle.isChecked = true
-                //binding.createEditDiscountQuantity.setText(thisTicket.payload.quantity.toString())
+                binding.createEditDiscountQuantity.setText(thisTicket.payload.quantity.toString())
                 binding.createEditDiscountValue.setText(thisTicket.payload.discount.toString())
             } else {
                 binding.createEditDiscountToggle.isChecked = false
