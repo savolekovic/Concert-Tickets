@@ -79,7 +79,6 @@ class DiscountFragment : Fragment() {
         adapter.setOnEditClickListener {
             binding.root.findNavController().navigate(
                 AdminFragmentDirections.actionAdminFragmentToCreateEditFragment(
-                    isEdit = true,
                     ticketId = it.ticket_id!!
                 )
             )
@@ -91,7 +90,7 @@ class DiscountFragment : Fragment() {
     }
 
     private fun subscribeObservers() {
-        viewModel.getDiscountedTickets(
+        viewModel.getTicketsByType(
             if (isDiscounted) DISCOUNT
             else EVENT
         ).observe(viewLifecycleOwner) {

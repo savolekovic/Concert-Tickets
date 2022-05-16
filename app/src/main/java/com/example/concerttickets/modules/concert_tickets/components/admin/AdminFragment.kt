@@ -70,7 +70,7 @@ class AdminFragment : Fragment() {
 
     private fun setAddOnClick() {
         binding.adminAddFab.setOnClickListener {
-            it.findNavController().navigate(AdminFragmentDirections.actionAdminFragmentToCreateEditFragment(isEdit = false))
+            it.findNavController().navigate(R.id.action_adminFragment_to_createFragment)
         }
     }
 

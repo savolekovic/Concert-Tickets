@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.concerttickets.R
 import com.example.concerttickets.databinding.FragmentCreateEditBinding
@@ -22,15 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
 
-
 @AndroidEntryPoint
-class CreateEditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class EditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var binding: FragmentCreateEditBinding
     private val viewModel by viewModels<CreateEditViewModel>()
 
     private var ticketId = -1
-    private var isEdit = false
 
     private lateinit var thisTicket: ConcertTicket
 
@@ -38,13 +36,8 @@ class CreateEditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val args = arguments?.let { CreateEditFragmentArgs.fromBundle(it) }
-        isEdit = args!!.isEdit
-        if (isEdit) {
-            ticketId = args.ticketId
-            (activity as AppCompatActivity).supportActionBar?.title = "Edit"
-        } else
-            (activity as AppCompatActivity).supportActionBar?.title = "Create"
+        val args = arguments?.let { EditFragmentArgs.fromBundle(it) }
+        ticketId = args!!.ticketId
 
         binding = FragmentCreateEditBinding.inflate(inflater, container, false)
         return binding.root
@@ -55,34 +48,33 @@ class CreateEditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         initDiscountToggle()
         observeViewModel()
 
-        if (isEdit) {
-            binding.createEditSubmit.text = getString(R.string.edit)
-            viewModel.getDetails(ticketId).observe(viewLifecycleOwner) {
-                thisTicket = it
-                updateUI()
-            }
-
-            binding.createEditSubmit.setOnClickListener {
-                viewModel.upsert(
-                    binding.createEditName.text.toString().trim(),
-                    binding.createEditDescription.text.toString().trim(),
-                    binding.createEditPlace.text.toString().trim(),
-                    binding.createEditDate.text.toString().trim(),
-                    binding.createEditPrice.text.toString().trim(),
-                    binding.createEditQuantity.text.toString().trim(),
-                    binding.createEditDiscountValue.text.toString().trim(),
-                    binding.createEditDiscountToggle.isChecked,
-                    thisTicket
-                )
-            }
-        } else
-            binding.createEditSubmit.text = getString(R.string.create)
+        binding.createEditSubmit.text = getString(R.string.edit)
+        viewModel.getDetails(ticketId).observe(viewLifecycleOwner) {
+            thisTicket = it
+            updateUI()
+        }
+        binding.createEditSubmit.setOnClickListener {
+            viewModel.upsert(
+                binding.createEditName.text.toString().trim(),
+                binding.createEditDescription.text.toString().trim(),
+                binding.createEditPlace.text.toString().trim(),
+                binding.createEditDate.text.toString().trim(),
+                binding.createEditPrice.text.toString().trim(),
+                binding.createEditQuantity.text.toString().trim(),
+                binding.createEditDiscountValue.text.toString().trim(),
+                binding.createEditDiscountToggle.isChecked,
+                thisTicket
+            )
+        }
     }
 
     private fun observeViewModel() {
         lifecycleScope.launchWhenCreated {
             viewModel.eventFlow.collectLatest {
-                Toast.makeText(binding.root.context, "Long: $it", Toast.LENGTH_SHORT).show()
+                if (it > 0) {
+                    binding.root.findNavController().navigateUp()
+                    Toast.makeText(binding.root.context, "Concert ticket edited.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
         //Name
@@ -148,7 +140,7 @@ class CreateEditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
                 DatePickerDialog(
                     requireContext(),
-                    this@CreateEditFragment,
+                    this@EditFragment,
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)

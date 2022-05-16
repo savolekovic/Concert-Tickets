@@ -131,9 +131,5 @@ class HomeFragment : Fragment() {
             binding.expiredTv.visibility = View.GONE
             binding.expiredRecycler.visibility = View.GONE
         } else expiredAdapter.submitList(expiredList)
-
-        Log.d("test123", "discountList $discountList")
-        Log.d("test123", "upcomingList $upcomingList")
-        Log.d("test123", "expiredList $expiredList")
     }
 }

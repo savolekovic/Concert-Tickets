@@ -1,5 +1,6 @@
 package com.example.concerttickets.modules.concert_tickets.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,16 +34,21 @@ class DiscountAdapter :
                 if (concertTicket.payload.place == null) {
                     discountLocationImg.visibility = View.GONE
                     discountLocation.visibility = View.GONE
-                } else
+                } else {
+                    discountLocationImg.visibility = View.VISIBLE
+                    discountLocation.visibility = View.VISIBLE
                     discountLocation.text = concertTicket.payload.place
+                }
                 discountDate.text = concertTicket.payload.date
 
                 val discountedPrice =
                     concertTicket.payload.price * ((100 - concertTicket.payload.discount!!) / 100.0f)
                 val ticketsDiscountedText =
-                    "Only ${concertTicket.payload.quantity} tickets for ${NumberFormat.getCurrencyInstance(
-                        Locale.GERMANY
-                    ).format(discountedPrice)}"
+                    "Only ${concertTicket.payload.quantity} tickets for ${
+                        NumberFormat.getCurrencyInstance(
+                            Locale.GERMANY
+                        ).format(discountedPrice)
+                    }"
                 discountTicketsCountPrice.text = ticketsDiscountedText
 
                 discountPerformer.text = concertTicket.payload.name

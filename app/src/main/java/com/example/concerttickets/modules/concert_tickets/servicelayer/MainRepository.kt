@@ -49,7 +49,7 @@ class MainRepository
         emitAll(flow)
     }
 
-    fun getDiscountedTickets(ticketType: String) = ticketsDao.getTicketsByType(ticketType)
+    fun getTicketsByType(ticketType: String) = ticketsDao.getTicketsByType(ticketType)
 
     suspend fun deleteConcertTicket(concertTicket: ConcertTicket) =
         ticketsDao.deleteConcertTicket(concertTicket)

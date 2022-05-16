@@ -28,16 +28,15 @@
         <action
             android:id="@+id/action_adminFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_adminFragment_to_createFragment"
+            app:destination="@id/createFragment" />
     </fragment>
     <fragment
         android:id="@+id/createEditFragment"
-        android:name="com.example.concerttickets.modules.concert_tickets.components.create_edit.CreateEditFragment"
-        android:label="Create"
+        android:name="com.example.concerttickets.modules.concert_tickets.components.create_edit.EditFragment"
+        android:label="Edit"
         tools:layout="@layout/fragment_create_edit" >
-        <argument
-            android:name="isEdit"
-            app:argType="boolean"
-            android:defaultValue="false" />
         <argument
             android:name="ticket_id"
             app:argType="integer"
@@ -53,4 +52,9 @@
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.example.concerttickets.modules.concert_tickets.components.create_edit.CreateFragment"
+        android:label="Create"
+        tools:layout="@layout/fragment_create_edit"/>
 </navigation>

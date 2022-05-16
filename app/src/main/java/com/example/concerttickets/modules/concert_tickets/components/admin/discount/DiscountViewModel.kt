@@ -13,8 +13,8 @@ import javax.inject.Inject
 class DiscountViewModel
 @Inject constructor(private val mainRepository: MainRepository) : ViewModel() {
 
-    fun getDiscountedTickets(ticketType: String) =
-        mainRepository.getDiscountedTickets(ticketType).asLiveData()
+    fun getTicketsByType(ticketType: String) =
+        mainRepository.getTicketsByType(ticketType).asLiveData()
 
     fun deleteConcertTicket(concertTicket: ConcertTicket) = viewModelScope.launch {
         mainRepository.deleteConcertTicket(concertTicket)

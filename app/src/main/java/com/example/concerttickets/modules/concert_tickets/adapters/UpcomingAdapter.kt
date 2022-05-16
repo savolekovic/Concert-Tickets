@@ -11,7 +11,6 @@ import com.example.concerttickets.R
 import com.example.concerttickets.databinding.RowUpcomingBinding
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
 import com.example.concerttickets.utils.IMAGE_URL
-import com.example.concerttickets.utils.TIME_VALUE
 import com.example.concerttickets.utils.toMonth
 import java.text.NumberFormat
 import java.util.*
@@ -88,10 +87,12 @@ class UpcomingAdapter :
                 //There is no time in APi, so I have put 11:30AM for every item
                 //upcomingTime.text = TIME_VALUE
 
-                if (concertTicket.payload.place == null) {
+                if (concertTicket.payload.place == null)
                     upcomingLocation.visibility = View.GONE
-                } else
+                else {
+                    upcomingLocation.visibility = View.VISIBLE
                     upcomingLocation.text = concertTicket.payload.place
+                }
 
                 val quantityText = "${concertTicket.payload.quantity} tickets more"
                 upcomingTickets.text = quantityText

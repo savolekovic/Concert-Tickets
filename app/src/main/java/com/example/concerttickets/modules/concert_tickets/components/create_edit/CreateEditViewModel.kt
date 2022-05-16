@@ -5,9 +5,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.concerttickets.R
 import com.example.concerttickets.modules.concert_tickets.models.ConcertTicket
+import com.example.concerttickets.modules.concert_tickets.models.Payload
 import com.example.concerttickets.modules.concert_tickets.servicelayer.MainRepository
 import com.example.concerttickets.utils.DISCOUNT
 import com.example.concerttickets.utils.EVENT
+import com.example.concerttickets.utils.TICKET_IMAGE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -167,6 +169,67 @@ class CreateEditViewModel
         }
 
         return isValid
+    }
+
+    fun create(
+        name: String,
+        description: String,
+        place: String,
+        date: String,
+        price: String,
+        quantity: String,
+        discountValue: String,
+        isDiscountChecked: Boolean
+    ) = viewModelScope.launch {
+        if (validateForm(
+                name,
+                place,
+                date,
+                price,
+                quantity,
+                discountValue,
+                isDiscountChecked
+            )
+        ) {
+            if (isDiscountChecked) {
+                _eventFlow.emit(
+                    mainRepository.upsert(
+                        ConcertTicket(
+                            type = DISCOUNT,
+                            payload = Payload(
+                                name = name,
+                                date = date,
+                                description = description,
+                                place = place,
+                                price = price.toInt(),
+                                quantity = quantity.toInt(),
+                                photo = TICKET_IMAGE,
+                                discount = discountValue.toInt(),
+                                id = 99
+                            )
+                        )
+                    )
+                )
+            } else {
+                _eventFlow.emit(
+                    mainRepository.upsert(
+                        ConcertTicket(
+                            type = EVENT,
+                            payload = Payload(
+                                name = name,
+                                date = date,
+                                description = description,
+                                place = place,
+                                price = price.toInt(),
+                                quantity = quantity.toInt(),
+                                photo = TICKET_IMAGE,
+                                id = 99
+                            )
+                        )
+                    )
+                )
+            }
+        }
     }
 
 }

@@ -10,6 +10,8 @@ const val GET_CONCERT_TICKETS = "concerts.json"
 const val IMAGE_URL =
     "https://oobleecdn.s3.eu-central-1.amazonaws.com/content/concert-tickets"
 
+const val TICKET_IMAGE = "/images/Concert.jpg"
+
 const val DISCOUNT = "DISCOUNT"
 const val EVENT = "EVENT"
 

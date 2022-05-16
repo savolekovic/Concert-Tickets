@@ -1,5 +1,6 @@
 package com.example.concerttickets.modules.concert_tickets.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +34,11 @@ class ExpiredAdapter :
 
                 if (concertTicket.payload.place == null) {
                     expiredLocation.visibility = View.GONE
-                } else
+                } else {
+                    expiredLocation.visibility = View.VISIBLE
                     expiredLocation.text = concertTicket.payload.place
+                    Log.d("test123", "sto jev obobobobobo:${concertTicket.payload.place}")
+                }
             }
         }
 
