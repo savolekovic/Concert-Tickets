@@ -184,6 +184,7 @@ class EditFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
+        binding.createEditDate.hint = ""
         binding.createEditDate.setText(Helper.formatDate(year = year, month = month, day = day))
     }
 }
