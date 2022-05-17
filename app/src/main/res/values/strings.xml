@@ -31,6 +31,7 @@
 
     <string name="alert_empty_name">Name field is empty</string>
     <string name="alert_empty_place">Place field is empty</string>
+
     <string name="alert_empty_date">Date field is empty</string>
 
     <string name="alert_empty_price">Price field is empty</string>
