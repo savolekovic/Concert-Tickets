@@ -172,6 +172,10 @@ class CreateEditViewModel
                     isValid = false
                     R.string.alert_empty_date
                 }
+                date == "Click to set a date" -> {
+                    isValid = false
+                    R.string.alert_empty_date
+                }
                 else -> null
             }
         )
